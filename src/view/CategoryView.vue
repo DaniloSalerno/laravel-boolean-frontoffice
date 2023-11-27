@@ -3,7 +3,7 @@ import axios from 'axios';
 import AppCard from '../components/AppCard.vue';
 
 export default {
-    name: 'HomeView',
+    name: 'CategoryView',
     components: {
         AppCard
     },
@@ -43,7 +43,7 @@ export default {
                 .then(response => {
                     this.currentPage = response.data.result.current_page;
                     this.cocktails = response.data.result.data;
-                    //console.log('pagina:' + this.currentPage);
+                    //console.log(response);
                     //console.log('cocktail:' + this.cocktails);
                     this.lastPage = response.data.result.last_page;
                 })
@@ -54,8 +54,9 @@ export default {
         },
         filterCocktails(filter) {
             this.filter = filter;
+            this.currentPage = 1;
             this.apiCall();
-            console.log(this.filter);
+            console.log(filter);
 
 
         },
@@ -70,8 +71,6 @@ export default {
     <!-- Jumbo -->
     <div class="p-5 mb-4 bg-light rounded-3 bg-dark w-75 m-auto shadow mt-2 background_jumbo">
         <div class="container  py-5 ">
-            <h1 class="text-white">filtrata</h1>
-
             <h1 class="display-5 fw-bold text-danger">CocktailBar for Dev</h1>
             <p class="col-md-8 fs-4 text-white">After a day on the code, the best way to restore your mind</p>
         </div>
